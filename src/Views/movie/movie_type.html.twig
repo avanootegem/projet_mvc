@@ -1,0 +1,46 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+
+	<div class="body-content">
+
+		<section>
+			<h2>Résultats de votre recherche</h2>
+			<div class="search-film-page">
+				{% for movieType in movieTypes %}
+					<div class="search-card-film">
+						<img src="{{baseUrl}}/assets/img/{{movieType.poster}}" alt="poster"/>
+						<div class="right-col">
+							<div class="search-card-film-title">
+								<a href="{{baseUrl}}/movie/{{movieType.id_movie}}">
+									<h3>{{movieType.title}}</h3>
+								</a>
+								<span>{{movieType.year}}</span>
+							</div>
+							<p>{{movieType.synopsis}}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+
+		<div class="next-movies vertical-home-container">
+			<h2>Prochainement</h2>
+
+			<ul>
+				{% for nextMovie in nextMovies %}
+					<li>
+						<a href="{{ baseUrl }}/movie/{{ nextMovie.id_movie }}">
+							<h3>{{nextMovie.title}}</h3>
+						</a>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/></svg>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<a href="{{baseUrl}}/all_next_movies">Voir plus de film</a>
+		</div>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+	<div class="body-content">
+		<section>
+			<div>
+				<div class="page-movie">
+					<img src="../assets/img/{{movie.poster}}" alt="poster">
+					<div class="right-col-page-movie">
+						<h2>{{movie.title}}</h2>
+						<p>({{movie.year}})</p>
+						<p>{{movie.synopsis}}</p>
+					</div>
+				</div>
+				<h2>Infos pratiques</h2>
+				<div class="page-movie-2">
+					<p>
+						<span>Réalisé par
+						</span>
+						{% for director in directors %}
+							<a href="{{baseUrl}}/staff/{{director.id_person}}">
+								{{director.firstname}}
+								{{director.lastname}}
+							</a>
+						{% endfor %}
+					</p>
+					<p>
+						<span>Avec
+						</span>
+						{% for actor in actors %}
+							<a href="{{baseUrl}}/staff/{{actor.id_person}}">
+								{{actor.firstname}}
+								{{actor.lastname}}
+							</a>
+						{% endfor %}
+					</p>
+					{% if auth.admin == 3 %}
+						<span>
+							<form method="GET" action="{{baseUrl}}/changePage/{{movie.id_movie}}">
+								<button type="submit" class="btn">Modifier</button> 
+							</form>
+						</span>
+					{% endif %}
+				</div>
+			</div>
+			<div class="comments">
+				<h2>Commentaire</h2>
+				{% if auth %}
+					<form method="POST" action="{{baseUrl}}/movie/{{movie.id_movie}}/comment">
+						<div class="input-container comment">
+							<textarea type="text" name="comment" class="input-field" placeholder="Laissez un commentaire"></textarea>
+						</div>
+
+						<div class="form-group check">
+							<input type="checkbox" name="spoiler" value="1"/>
+							<h6>Afficher ce message comme spoiler</h6>
+						</div>
+
+						<button type="submit" class="btn">Commenter</button>
+					</form>
+				{% endif %}
+
+				<ul>
+					{% for comment in comments %}
+						{% if comment.id_user == auth.id_user %}
+								<li class = "connecter"> <div class="comment"><div class ="commentHeader"><h3>{{comment.username}}</h3> <h3>{{comment.post_date}}</h3> </div> <h4 class="commentText">{{comment.comment}}</h4></div></li>
+						{% else %}
+							{% if comment.spoiler == 1 %}
+								<li class = "other spoil"> <h3 class="spoilMess">Cliquez pour afficher ce spoiler.</h3> <div class="comment"><div class ="commentHeader"><h3>{{comment.username}}</h3> <h3>{{comment.post_date}}</h3></div><h4 class="commentText">{{comment.comment}}</h4></div></li>
+							{% else %}
+								<li class = "other"> <div class="comment"><div class ="commentHeader"><h3>{{comment.username}}</h3> <h3>{{comment.post_date}}</h3> </div><h4 class="commentText">{{comment.comment}}</h4></div></li>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</section>
+
+		<div class="next-movies vertical-home-container">
+			<h2>Autres films
+				{{movie.movie_type}}</h2>
+
+			<ul>
+				{% for sameType in sameTypes %}
+					<li>
+						<a href="{{ baseUrl }}/movie/{{ sameType.id_movie }}">
+							<h3>{{sameType.title}}</h3>
+						</a>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/></svg>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<a href="{{ baseUrl }}/movie_type/{{ movie.id_type }}">Voir plus de film</a>
+		</div>
+	</div>
+	<script>
+		const spoil = document.querySelectorAll('.spoil');
+
+		spoil.forEach(element => {
+			element.addEventListener('click', ()=>{
+				element.classList.remove('spoil');
+			})
+		});
+	</script>
+{% endblock %}

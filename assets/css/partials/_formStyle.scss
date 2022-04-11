@@ -1,0 +1,135 @@
+/* Style the input container */
+form{
+    margin: 1em;
+    p{
+        font-size: 18px;
+        margin: .55em 0 1.5em 0;
+    }
+}
+.body-content form h2{
+    margin-left: 0;
+}
+
+.input-container {
+    display: flex;
+    width: 50%;
+    margin-bottom: 15px;
+    &.comment {
+        width: 100%;
+    }
+}
+
+/* Style the input fields */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    border: 2px solid transparent;
+}
+
+.input-field:focus {
+    border: 2px solid #457564;
+}
+
+.check {
+    padding: 10px;
+
+    label {
+        color: #457564;
+        font-size: 2rem;
+        font-weight: 400;
+        font-family: 'montserrat', sans-serif;
+    }
+
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+
+        border-radius: 4px;
+        height: 20px;
+        width: 20px;
+        background: #fff;
+        border: 1px solid #ccc;
+        
+        &:checked {
+            color: #457564;
+            background-color: #457564;
+        }
+    }
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: #457564;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    margin-top: 1.5em;
+    border-radius: 7px;
+    color: #e4e4e4;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+.danger{
+    display: grid;
+    position: fixed;
+    background: red;
+    align-items: center;
+    align-content: center;
+    place-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 2em;
+
+    h6{
+        color: white;
+        font-size: 18px;
+        z-index: 10;
+        text-align: center;
+        padding: 25px;
+    }
+}
+
+.success{
+    display: grid;
+    position: fixed;
+    background: red;
+    align-items: center;
+    align-content: center;
+    place-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 2em;
+
+    h6{
+        color: white;
+        font-size: 18px;
+        z-index: 10;
+        align-content: center;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 800px){
+    .input-container, .btn{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1050px){
+    .input-container, .btn{
+        width: 75%;
+    }
+}

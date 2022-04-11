@@ -1,0 +1,51 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+
+	<div class="body-content">
+		<section>
+			<h2>Fiche de
+				{{person.firstname}}
+				{{person.lastname}}</h2>
+			<p>Biographie :
+				{{person.biography}}</p>
+			<p>Date de naissance :
+				{{person.birthdate}}</p>
+			{% if person.picture != null %}
+				<img src="asset/img/{{person.picture}}" alt="Photo de l'artiste">
+			{% endif %}
+
+			<div class="filmography-person">
+				<h3>Filmographie</h3>
+
+				<div class="film-person">
+					<h4>film(s)</h4>
+					{% for movie in movies %}
+						<div class="movie">
+							<a href="{{baseUrl}}/movie/{{movie.id_movie}}">
+								<p>{{movie.title}}</p>
+							</a>
+							<p>{{movie.year}}</p>
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="role-person">
+					<h4>
+						{% if roles|length == 1 %}
+							rôle
+						{% else %}
+							rôles
+						{% endif %}
+					</h4>
+					<ul class="role-person">
+						{% for role in roles %}
+							<li>{{role.role_type}}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+
+{% endblock %}

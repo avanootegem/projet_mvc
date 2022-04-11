@@ -1,0 +1,71 @@
+@media screen and (max-width: 870px) {
+
+    .menu-burger{
+        position: relative;
+        height: 35px;
+        width: 35px;
+
+        &:hover{
+            #menu-icon::after{
+                transform: translateY(-11px);
+                transition: 0.5s;
+            }
+        }
+    
+        &:hover{
+            #menu-icon::before{
+                transform: translateY(11px);
+                transition: 0.5s;
+            }
+        } 
+    }
+
+    #menu-icon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        height: 2px;
+        width: 25px;
+        border-radius: 25px;
+        transform: translate(-50%);
+
+        background: white;  
+    }
+
+    #menu-icon::after, #menu-icon::before{
+        position: absolute;
+        content: '';
+        height: 2px;
+        width: 25px;
+
+        background: white;
+    }
+
+    #menu-icon::after{
+        transform: translateY(-9px);
+        transition: 0.5s;
+    }
+
+    #menu-icon::before{
+        transform: translateY(9px);
+        transition: 0.5s;
+    }
+    
+    .menu.change{
+        display: block;
+        transform: translateY(55px);
+        transition: 0.5s;
+        position: fixed;
+        width: 100vw;
+        background-color: #457564;
+        li{
+            padding: 10px 0;
+            text-align: center;
+            a{
+                color: white;
+                font-size: 1.75rem;
+            }
+        }
+      }
+}

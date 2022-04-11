@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Accueil{% endblock %}</title>
+    {% block css %}
+    <link rel="stylesheet" href="{{baseUrl}}/assets/css/style.css">
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+    
+    {% block navigation %}
+        <nav>
+            <a href="{{baseUrl}}">
+                <div class="branding">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 40">
+                        <path id="Exclusion_7" data-name="Exclusion 7" d="M588.75,2984h-37.5a7.58,7.58,0,0,1-2.433-.393,6.5,6.5,0,0,1-1.987-1.072,5.084,5.084,0,0,1-1.339-1.589A4.128,4.128,0,0,1,545,2979v-24.328a3.069,3.069,0,0,1,.282-1.28,3.642,3.642,0,0,1,.785-1.1,4.563,4.563,0,0,1,1.2-.829,5.426,5.426,0,0,1,1.517-.47l44.1-6.993,2.1,7.222.017.07-26.529,4.375H595V2979a4.127,4.127,0,0,1-.491,1.946,5.084,5.084,0,0,1-1.339,1.589,6.5,6.5,0,0,1-1.987,1.072A7.58,7.58,0,0,1,588.75,2984Zm-23.713-8.952h0l.446,1.769a1.018,1.018,0,0,0,.732.705l2.984.821a1.229,1.229,0,0,0,.33.045,1.164,1.164,0,0,0,.757-.27l1.433-1.221-1.607-.444-.491.419a.773.773,0,0,1-.5.179.81.81,0,0,1-.219-.03l-1.618-.441a.679.679,0,0,1-.485-.467l-.156-.62-1.6-.445Zm-2.161-1.881h0a1.816,1.816,0,0,1,.489.07c3.473.966,11.677,3.234,12.9,3.563a1.419,1.419,0,0,0,.368.049,1.747,1.747,0,0,0,1.255-.616c.928-.982,1.422-2.892,1.322-5.11a8.734,8.734,0,0,0-1.077-4.038,2.562,2.562,0,0,0-1.971-1.469,1.272,1.272,0,0,0-.4.065c-1.063.354-7.338,2.634-11.087,4l-.02.007-.028.01-1.26.458a1.912,1.912,0,0,1-.659.124,2.1,2.1,0,0,1-1.02-.311c-.087-.046-.17-.089-.25-.124a3.256,3.256,0,0,0,.085,3.883c.058-.036.118-.075.181-.116h0A2.067,2.067,0,0,1,562.877,2973.167Zm23.424-15.834-4.248,3.334h6.362l4.248-3.334H586.3Zm-12.525,0-4.248,3.334h6.362l4.248-3.334Zm-12.542,0-4.248,3.334h6.362l4.248-3.334Zm1.075-6.505h0l-6.242.989,5.013,2.683,6.235-.992-5.006-2.68Zm12.3-1.952h0l-6.24.99,5,2.678,6.237-.992-5-2.677Zm12.288-1.948h0l-6.242.99,5,2.675,6.237-.992-4.992-2.673Zm-10.591,28.324c-.327,0-.637-.255-.875-.719a8.128,8.128,0,0,1-.8-3.319,7.477,7.477,0,0,1,.521-3.22c.223-.506.528-.785.859-.785.313,0,.625.255.877.717a7.522,7.522,0,0,1,.8,3.136,9.034,9.034,0,0,1-.078,1.76,6.975,6.975,0,0,1-.435,1.643C576.96,2974.965,576.647,2975.252,576.306,2975.252Z" transform="translate(-545 -2944)"/>
+                    </svg>
+                    <h1>Films Infos</h1>
+                </div>
+            </a>
+            <form action="{{baseUrl}}/search_movies" method="POST" class="research-bar">
+                <input name="research" type="text" id="research" placeholder="Rechercher un film" autocomplete="off">
+                <ul id="searchList"></ul>
+                <svg xmlns="http://www.w3.org/2000/svg" width="23.809" height="24" viewBox="0 0 23.809 24">
+                    <path id="iconmonstr-magnifier-2" d="M23.809,21.646l-6.2-6.2a9.736,9.736,0,1,0-2.387,2.321L21.455,24l2.354-2.354ZM2.854,9.73a6.877,6.877,0,1,1,6.877,6.877A6.885,6.885,0,0,1,2.854,9.73Z"/>
+                </svg>
+            </form>
+            <div class="menu-burger">
+                <span id="menu-icon"></span>
+            </div>
+
+            <ul>
+            {% if auth == false %}
+                <li><a href="{{baseUrl}}/loginPage">Se connecter</a></li>
+                <li><a href="{{baseUrl}}/create_accountPage">S'enregistrer</a></li>
+            {% else %}
+                <li><a href="{{baseUrl}}/my_account">Mon compte</a></li>
+                <li><a href="{{baseUrl}}/logout">Se déconnecter</a></li>
+                {% if auth.admin == 3 %}
+                    <li><a href="{{baseUrl}}/createPage">Ajouter</a></li>
+                {% endif %}
+            {% endif %}
+            </ul>
+        </nav>
+            <ul class="menu">
+            {% if auth == false %}
+                <li><a href="{{baseUrl}}/loginPage">Se connecter</a></li>
+                <li><a href="{{baseUrl}}/create_accountPage">S'enregistrer</a></li>
+            {% else %}
+                <li><a href="{{baseUrl}}/my_account">Mon compte</a></li>
+                <li><a href="{{baseUrl}}/logout">Se déconnecter</a></li>
+                {% if auth.admin == 3 %}
+                    <li><a href="{{baseUrl}}/createPage">Ajouter</a></li>
+                {% endif %}
+            {% endif %}
+            </ul>
+    {% endblock %}
+
+    {% block body %}
+    {% endblock %}
+    </div>
+    {% block js %}
+    <script>
+
+        const menuBurger = document.querySelector('.menu-burger');
+        const menu = document.querySelector('.menu');
+        console.log(menuBurger)
+
+        menuBurger.addEventListener('click', () => {
+            menuBurger.classList.toggle("change")
+            menu.classList.toggle("change")
+        })
+
+
+    </script>
+    <script>
+        const searchBar = document.querySelector('#research');
+        const formSearchBar = document.querySelector('.research-bar');
+        const ul = document.getElementById('searchList');
+
+        let timeout = null;
+        let li = ``;
+
+        searchBar.addEventListener('input', () => {
+            clearTimeout(timeout);
+            let formData = new FormData(formSearchBar);
+            fetch('{{baseUrl}}/search', {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => timeout = setTimeout(function () {data.forEach(element => {
+                    if (searchBar.value != '') {
+                        li += `
+                            <a href="{{baseUrl}}/movie/${element.id_movie}"><li><img src="{{baseUrl}}/assets/img/${element.poster}" alt="poster"/><div class="title-container"><h3 class="search-list-title">${element.title}</h3><p class="search-list-p">(${element.year})</p></div></li></a>
+                        `;
+                    } else {
+                        ul.innerHTML = '';
+                    }
+                })
+            ul.innerHTML = li;
+            li = ``;
+            }), 0);
+        })
+    </script>
+    {% endblock %}
+</body>
+</html>

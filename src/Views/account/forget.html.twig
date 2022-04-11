@@ -1,0 +1,20 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+<div class="body-content">
+    <form method="POST" action="{{baseUrl}}/forget">
+        <h2>Vous avez oublier votre mot de passe ?</h2>
+        <p>Veuillez entrer votre adresse mail ou votre Pseudo</p>
+        <div class="input-container">
+            <input type="text" name="reset" placeholder="username" class="input-field" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn">Valider</button>
+        {% if flash != NULL %}
+            <div class="{{flash.type}}">
+                <h6>{{flash.message}}</h6>
+            </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

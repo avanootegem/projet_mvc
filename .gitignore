@@ -1,0 +1,5 @@
+vendor/
+node-modules/
+config/Config.php
+assets/css/style.css
+assets/css/style.css.map

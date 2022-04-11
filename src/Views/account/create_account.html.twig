@@ -1,0 +1,35 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+<div class="body-content">
+
+    <form method="POST" action="{{baseUrl}}/create_accountPage/create_account">
+        <h2>Créez un compte</h2>
+        <P>...et accédez à tous l'univers cinéma.</p>
+        <div class="input-container">
+            <input type="text" name="username" placeholder="username" class="input-field" autocomplete="off">
+        </div>
+
+        <div class="input-container">
+            <input type="text" name="email" placeholder="email" class="input-field" autocomplete="off">
+        </div>
+
+        <div class="input-container">
+            <input type="password" name="password" placeholder="password" class="input-field" autocomplete="off">
+        </div>
+
+        <div class="input-container">
+            <input type="password" name="confirm_password" placeholder="confirm password" class="input-field" autocomplete="off">
+        </div> 
+
+        <button type="submit" class="btn">Créer votre compte</button>
+
+        {% if flash != NULL %}
+            <div class="{{flash.type}}">
+                <h6>{{flash.message}}</h6>
+            </div>
+        {% endif %}
+    </form>
+
+</div>
+{% endblock %}

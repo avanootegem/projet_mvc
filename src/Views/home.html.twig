@@ -1,0 +1,62 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+	<div class="body-content">
+
+		{% if flash != NULL %}
+			<div class="{{flash.type}}">
+				<h6>{{flash.message}}</h6>
+			</div>
+		{% endif %}
+
+		<div class="last-movies home-container">
+			<h2>Les sorties récentes</h2>
+			<div class="home-container-content">
+				{% for lastMovie in lastMovies %}
+					<div class="card-movie">
+						<a href="{{baseUrl}}/movie/{{ lastMovie.id_movie }}">
+							<img src="assets/img/{{lastMovie.poster}}" alt="poster"/>
+						</a>
+						<h3>{{lastMovie.title}}</h3>
+					</div>
+				{% endfor %}
+			</div>
+
+			<a href="{{baseUrl}}/all_movies">Voir plus de film</a>
+		</div>
+
+		<div class="next-movies vertical-home-container">
+			<h2>Prochainement</h2>
+
+			<ul>
+				{% for nextMovie in nextMovies %}
+					<li>
+						<a href="{{baseUrl}}/movie/{{ nextMovie.id_movie }}">
+							<h3>{{nextMovie.title}}</h3>
+						</a>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z"/></svg>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<a href="{{baseUrl}}/all_next_movies">Voir plus de film</a>
+		</div>
+
+		<div class="select-movies home-container">
+			<h2>La select' de la rédaction</h2>
+			<div class="home-container-content">
+				{% for favMovie in favMovies %}
+					<div class="card-movie">
+						<a href="{{baseUrl}}/movie/{{favMovie.id_movie}}">
+							<img src="assets/img/{{favMovie.poster}}" alt="poster"/>
+						</a>
+						<h3>{{favMovie.title}}</h3>
+					</div>
+				{% endfor %}
+			</div>
+
+			<a href="{{baseUrl}}/favorite_movies">Tous nos coups de coeur</a>
+		</div>
+
+	</div>
+{% endblock %}

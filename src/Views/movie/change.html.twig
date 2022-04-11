@@ -1,0 +1,33 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+<div class="body-content">
+    <form method="POST" action="{{baseUrl}}/change/{{movie.id_movie}}">
+        <h2>Modifier un film</h2>
+        <p></p>  
+        <div class="input-container">
+            <input type="text" name="title" class="input-field" placeholder="title" value="{{movie.title}}">
+        </div>
+
+        <div class="input-container">
+            <input type="text" name="year" class="input-field" placeholder="year" value="{{movie.year}}">
+        </div>
+
+        <div class="input-container">
+            <textarea type="text" name="synopsis" class="input-field" placeholder="synopsis">{{movie.synopsis}}</textarea>
+        </div>
+
+        <div class="check">
+            <label> released : </label>
+            <input type="checkbox" name="released" value="1"/>
+        </div>
+
+        <div class="check">
+            <label> favorite : </label>
+            <input type="checkbox" name="favorite" value="1"/>
+        </div>
+
+        <button type="submit" class="btn">Modifier</button>
+    </form>
+</div>
+{% endblock %}

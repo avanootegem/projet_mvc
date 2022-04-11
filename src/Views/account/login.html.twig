@@ -1,0 +1,30 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+<div class="body-content">
+    <form method="POST" action="{{baseUrl}}/loginPage/login">
+        <h2>Accédez à votre compte</h2>
+        <p>Nous somme heureux de vous revoir parmis nous!</p>
+        <div class="input-container">
+            <input type="text" name="username" placeholder="username" class="input-field" autocomplete="off">
+        </div>
+
+        <div class="input-container">
+            <input type="password" name="password" placeholder="password" class="input-field" autocomplete="off">
+        </div>
+
+        <a href="{{baseUrl}}/forgetPage"> Mot de passe oublié </a>
+
+        <div class="form-group check" style="display: none;">
+            <input type="checkbox" name="remember" value="1" id="check"/>
+        </div>
+
+        <button type="submit" class="btn">Se connecter</button>
+        {% if flash != NULL %}
+            <div class="{{flash.type}}">
+                <h6>{{flash.message}}</h6>
+            </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
